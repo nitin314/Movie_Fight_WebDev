@@ -8,8 +8,8 @@
   --fs-h1 : 25px;
   --fs-h2 : 22px;
   --fs-h3 : 18px;
-  --fs-h4 : 16px;
-  --fs-h5 : 14px;
+  --fs-h4 : 14px;
+  --fs-h5 : 10px;
   --fs-p : 16px;
   --background-color-primary : #E3B448;
   --background-color-secondary : #ffffff4d;
@@ -67,15 +67,12 @@ h1.title{
   background-size: cover;
   box-shadow: 0 4px 4px -5px rgba(255, 255, 255, 0.562);
   transition: box-shadow 0.3s ease;
+  position: relative;
 }
 
 .movie-section:hover{
   box-shadow: 0 5px 6px -5px rgba(255, 255, 255, 0.979);
 
-}
-
-h3{
-  color: antiquewhite;
 }
 
 
@@ -84,6 +81,7 @@ input{
   border: none;
   outline: none;
   padding: 0.2rem;
+  display: block;
 }
 
 input:hover{
@@ -91,6 +89,68 @@ input:hover{
   background-color: rgba(182, 179, 179, 0.63);
 }
 
+.search-results-container{
+  position: absolute;
+  min-width: 10rem;
+  background-color: aliceblue;
+  display: none;
+  margin-top: 0.2rem;
+  z-index: 10;
+  padding: 0.2rem;
+}
+
+.active {
+  display: initial;
+}
+
+/* search result float syle */
+
+.search-item-style{
+  max-width: 100%;
+  display: flex;
+  padding: 0.2rem;
+  margin-bottom: 0.2rem;
+  box-shadow: 0px 0px 2px 1px  grey;
+  background-color: rgba(211, 209, 205, 0.788);
+  border-radius: 5px;
+  transition: background-color 0.4s ease;
+  cursor: pointer;
+  border-bottom: 1px solid white;
+  overflow: hidden;
+
+}
+.search-item-style:hover{
+  background-color: var(--background-color-secondary);
+
+}
+
+.search-image-style{
+  max-width: 2.5rem;
+}
+
+.search-item-style div{
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.4rem;
+  
+}
+.search-item-style div h4{
+  font-size: var(--fs-h4);
+  color: var(--font-color);
+}
+
+
+/* intro mssage style */
+.intro-message{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-message p { 
+  padding: 1rem;
+  border: 2px solid grey;
+}
 
 
 /* Media Queries */
@@ -113,5 +173,35 @@ input:hover{
     gap: 0.4rem;
     flex-direction: column;
   }
+
+  
+  
+
+  /* search result float syle */
+
+  .search-results-container{
+    max-width: 12rem;
+    margin-top: 0.1rem;
+    padding: 0.2rem;
+  }
+
+.search-image-style{
+  max-width: 2.5rem;
+  margin-bottom: 0.1rem;
+}
+.search-item-style div{
+  margin-left: 0.2rem;
+}
+
+.search-item-style div h4{
+  font-size: var(--fs-h4);
+  color: var(--font-color);
+}
+
+
+.search-item-style div h5{
+  font-size: var(--fs-h5);
+  color: var(--font-color);
+}
 
 }
