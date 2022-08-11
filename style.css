@@ -103,6 +103,10 @@ input:hover{
   display: initial;
 }
 
+.active-disable{
+  display: none;
+}
+
 /* search result float syle */
 
 .search-item-style{

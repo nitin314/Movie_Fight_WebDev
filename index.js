@@ -28,9 +28,22 @@ const debounce = (func, delay = 1000)=>{
     };
 };  
 
+
+root = document.querySelector('.movie-section');
 // a function when called will call the fetchdata function with the argument as input text value.
 const onInput = async event =>{
         const movies = await fetchdata(event.target.value);   
+
+        if(!movies.length){
+            document.querySelector('.search-results-container').classList.add('active-disable');
+            return;
+        }    
+
+        document.querySelector('.search-results-items').innerHTML = '';
+        document.querySelector('.search-results-container').classList.remove('active-disable');
+        document.querySelector('.search-results-container').classList.add('active');
+
+
         for(let movie of movies){
             const div  = document.createElement('div');
             div.classList.add('search-item-style');
@@ -42,8 +55,23 @@ const onInput = async event =>{
                 </div>
                 
             `;
+            div.addEventListener('click', event => {
+                document.querySelector('.search-results-container').classList.remove('active');
+                document.querySelector('.search-results-container').classList.add('active-disable');
+                input.value = movie.Title;
+            });
             document.querySelector('.search-results-items').appendChild(div);
         }
 };
 // attached eventListner to input
 input.addEventListener('input',debounce(onInput,500));
+
+document.addEventListener('click', event => {
+    console.log(event.target);
+    if(!root.contains(event.target)){
+        document.querySelector('.search-results-container').classList.remove('active');
+        document.querySelector('.search-results-container').classList.add('active-disable');
+
+
+    }
+});
