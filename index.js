@@ -43,6 +43,10 @@ const onInput = async event =>{
         document.querySelector('.search-results-container').classList.remove('active-disable');
         document.querySelector('.search-results-container').classList.add('active');
 
+        document.querySelector('.searched-movie-item').classList.remove('active');
+        document.querySelector('.searched-movie-item').classList.add('active-disable');
+
+
 
         for(let movie of movies){
             const div  = document.createElement('div');
@@ -59,6 +63,7 @@ const onInput = async event =>{
                 document.querySelector('.search-results-container').classList.remove('active');
                 document.querySelector('.search-results-container').classList.add('active-disable');
                 input.value = movie.Title;
+                findMovieByID(movie);
             });
             document.querySelector('.search-results-items').appendChild(div);
         }
@@ -75,3 +80,43 @@ document.addEventListener('click', event => {
 
     }
 });
+
+// function do api call with the Movie ID and ger back the data
+const findMovieByID = async movie =>  {
+    let searchURL = `http://www.omdbapi.com/?apikey=33e7e6c6&i=${movie.imdbID}`;
+    const response = await fetch(searchURL);
+    const data = await response.json();
+
+    if(data.Error){
+        return [];
+    }
+    console.log(data);
+    let movieHTML = movieTemplate(data);
+    console.log(movieHTML);
+    document.querySelector('.searched-movie-item').innerHTML = movieHTML;
+    document.querySelector('.searched-movie-item').classList.remove('active-disable');
+    document.querySelector('.searched-movie-item').classList.add('active');
+}
+
+function movieTemplate(movieData){
+    return `
+    <section class = "selected-movie-container">
+        <figure>
+            <img src="${movieData.Poster}" alt="Poster of movie${movieData.Title}">
+            <figcaption>${movieData.Title} <br><span>${movieData.Year}</span></figcaption>
+        </figure>
+        <div class="movie-details">
+            <h3>Box Office</h3>
+            <p>${movieData.BoxOffice}</p>
+        </div>
+        <div class="movie-details">
+            <h3>IMDB Rating</h3>
+            <p>${movieData.imdbRating}</p>
+        </div>
+        <div class="movie-details">
+            <h3>Run Time</h3>
+            <p>${movieData.Runtime}</p>
+        </div>
+    </section>     
+    `
+}
