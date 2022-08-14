@@ -15,6 +15,7 @@ const fetchdata = async (searchKeyword)=>{
 
 const input = document.querySelector('input');
 
+
 // general purpose debounce function. that take a callback function and return another function that set the debounce functionality on the callback function we passed. if we call the returned function again and again, it will only execute the callback once 1 second has been passed since we last called the returned function 
 const debounce = (func, delay = 1000)=>{
     let timeoutID;
@@ -29,7 +30,9 @@ const debounce = (func, delay = 1000)=>{
 };  
 
 
-root = document.querySelector('.movie-section');
+root1 = document.querySelector('.s1');
+root2 = document.querySelector('.s2');
+
 // a function when called will call the fetchdata function with the argument as input text value.
 const onInput = async event =>{
         const movies = await fetchdata(event.target.value);   

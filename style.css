@@ -269,6 +269,15 @@ figure img{
   width: 20%;
 }
 
+figcaption { 
+  font-size: var(--fs-h3);
+}
+
+figcaption span { 
+  font-size: var(--fs-h4);
+}
+
+
 .movie-details{
   margin-top: 0.2rem;
   background-color:#616a8f;
